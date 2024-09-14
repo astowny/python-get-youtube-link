@@ -50,7 +50,7 @@ jobs:
       run: |
         ssh-keyscan -H 157.173.114.28 >> ~/.ssh/known_hosts
         
-    - name: Copy files via SSH
+    - name: Copy app.py file via SSH
       run: |
         scp app.py root@157.173.114.28:/public/python-get-youtube-link
       
