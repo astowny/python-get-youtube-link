@@ -52,7 +52,7 @@ jobs:
         
     - name: Copy files via SSH
       run: |
-        scp -r . root@157.173.114.28:/public/python-get-youtube-link
+        scp app.py root@157.173.114.28:/public/python-get-youtube-link
       
     - name: Restart FastAPI service
       run: |
