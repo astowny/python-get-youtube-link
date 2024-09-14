@@ -45,7 +45,11 @@ jobs:
 
     - name: List directory contents
       run: ls -R  # This will list files and directories in the workspace
-      
+    
+    - name: Add server to known_hosts
+      run: |
+        ssh-keyscan -H 157.173.114.28 >> ~/.ssh/known_hosts
+        
     - name: Copy app.py file via SSH
       run: |
         scp app.py root@157.173.114.28:/root/public/python-get-youtube-link
