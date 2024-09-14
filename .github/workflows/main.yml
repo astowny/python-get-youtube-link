@@ -24,6 +24,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+    - name: List directory contents
+      run: ls -R  # This will list files and directories in the workspace
     # - name: Run tests
     #   run: |
     #     pytest  # Assuming you have tests in place
@@ -41,13 +43,16 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}  # Add your SSH key to GitHub secrets
 
+    - name: List directory contents
+      run: ls -R  # This will list files and directories in the workspace
+      
     - name: Add server to known_hosts
       run: |
         ssh-keyscan -H 157.173.114.28 >> ~/.ssh/known_hosts
         
     - name: Copy files via SSH
       run: |
-        scp -r ./app/ root@157.173.114.28:/public/python-get-youtube-link
+        scp -r . root@157.173.114.28:/public/python-get-youtube-link
       
     - name: Restart FastAPI service
       run: |
