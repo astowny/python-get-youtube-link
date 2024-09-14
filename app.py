@@ -26,7 +26,7 @@ def delete_file_after_timeout(file_path: str, timeout: int = 3600):
 
 @app.get('/')
 async def hello_world():
-    return {'message': 'Hello, World!'}
+    return {'message': 'Hello, little World!'}
 
 class Item(BaseModel):
     url: str
