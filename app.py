@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse, FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from pytube import YouTube
+from pytubefix import YouTube
 import os
 import threading
 import time
@@ -52,7 +52,9 @@ async def download_video(item: Item, request: Request):
         
         # Télécharger la vidéo avec pytube
         yt = YouTube(youtube_url)
+        print('yt.streams', yt.streams)
         video = yt.streams.get_highest_resolution()
+        print('video', video)
         file_path = video.download(DOWNLOAD_FOLDER)
         
         # Obtenir le nom du fichier
