@@ -52,7 +52,7 @@ jobs:
         
     - name: Copy files via SSH
       run: |
-        scp app.py root@157.173.114.28:/root/public/python-get-youtube-link && scp requirements.txt root@157.173.114.28:/root/public/python-get-youtube-link
+        scp app.py requirements.txt root@157.173.114.28:/root/public/python-get-youtube-link
       
     - name: Install dependencies
       run: |
