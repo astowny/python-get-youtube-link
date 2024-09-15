@@ -50,10 +50,17 @@ jobs:
       run: |
         ssh-keyscan -H 157.173.114.28 >> ~/.ssh/known_hosts
         
-    - name: Copy app.py file via SSH
+    - name: Copy files via SSH
       run: |
         scp app.py root@157.173.114.28:/root/public/python-get-youtube-link
+        scp requirements.txt root@157.173.114.28:/root/public/python-get-youtube-link
       
+    - name: Install dependencies
+      run: |
+        ssh root@157.173.114.28 "source venv/bin/activate"
+        ssh root@157.173.114.28 "pip install --upgrade pip"
+        ssh root@157.173.114.28 "pip install -r requirements.txt"
+        
     - name: Restart FastAPI service
       run: |
         ssh root@157.173.114.28 "sudo systemctl restart fastapi-app"  # Replace with your app's service
