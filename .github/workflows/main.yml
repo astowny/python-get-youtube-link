@@ -57,7 +57,6 @@ jobs:
       
     - name: Install dependencies
       run: |
-        ssh root@157.173.114.28 "source venv/bin/activate"
         ssh root@157.173.114.28 "pip install --upgrade pip"
         ssh root@157.173.114.28 "pip install -r requirements.txt"
         
