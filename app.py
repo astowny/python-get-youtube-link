@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse, FileResponse
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from pytube import YouTube
 import os
@@ -9,6 +10,15 @@ import time
 
 app = FastAPI()
  
+# Configurer CORS pour autoriser toutes les origines (à utiliser avec prudence en production)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Autoriser toutes les origines
+    allow_credentials=True,
+    allow_methods=["*"],  # Autoriser toutes les méthodes HTTP
+    allow_headers=["*"],  # Autoriser tous les en-têtes
+)
+
 # Dossier où les vidéos seront téléchargées
 DOWNLOAD_FOLDER = 'public/videos'
 if not os.path.exists(DOWNLOAD_FOLDER):
