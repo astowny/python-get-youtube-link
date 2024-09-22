@@ -9,7 +9,7 @@ import time
 
 
 app = FastAPI()
- 
+
 # Configurer CORS pour autoriser toutes les origines (à utiliser avec prudence en production)
 app.add_middleware(
     CORSMiddleware,
@@ -67,7 +67,7 @@ async def download_video(item: Item, request: Request):
         print('debug', thread)
         
         # Construire l'URL publique
-        public_url = f"{request.base_url}videos/{file_name}"
+        public_url = f"https://youtube-url.translia.tech/videos/{file_name}"
         print('debug', request.base_url)
         
         return JSONResponse(content={"message": "Download successful", "url": public_url})
