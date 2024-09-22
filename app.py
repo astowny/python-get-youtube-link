@@ -13,7 +13,7 @@ app = FastAPI()
 # Configurer CORS pour autoriser toutes les origines (à utiliser avec prudence en production)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Autoriser toutes les origines
+    allow_origins=["https://companion.translia.tech"],  # Autoriser toutes les origines
     allow_credentials=True,
     allow_methods=["*"],  # Autoriser toutes les méthodes HTTP
     allow_headers=["*"],  # Autoriser tous les en-têtes
