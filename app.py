@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse, FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from pytubefix import YouTube
+from pytubefix import YouTube, exceptions
 import os
 import threading
 import time
@@ -51,7 +51,9 @@ async def download_video(item: Item, request: Request):
         print('debug', item)
         
         # Télécharger la vidéo avec pytube
-        yt = YouTube(youtube_url, 'WEB_CREATOR')
+        yt = YouTube(youtube_url, 'WEB_CREATOR', 
+                     use_oauth=True,
+                     allow_oauth_cache=True)
         print('yt.streams', yt.streams)
         video = yt.streams.get_highest_resolution()
         print('video', video)
@@ -73,6 +75,9 @@ async def download_video(item: Item, request: Request):
         return JSONResponse(content={"message": "Download successful", "url": public_url})
     except Exception as e:
         print(e)
+        if isinstance(e, exceptions.BotDetection):
+           print('error bot') 
+            
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get('/videos/{filename}')
