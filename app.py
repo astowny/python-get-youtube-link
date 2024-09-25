@@ -52,7 +52,7 @@ async def download_video(item: Item, request: Request):
         
         # Télécharger la vidéo avec pytube
         yt = YouTube(youtube_url, 
-        'MWEB', //Added
+        'MWEB', 
         use_oauth=True,
         allow_oauth_cache=True)
         print('yt.streams', yt.streams)
