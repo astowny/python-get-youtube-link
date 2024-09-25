@@ -51,9 +51,7 @@ async def download_video(item: Item, request: Request):
         print('debug', item)
         
         # Télécharger la vidéo avec pytube
-        yt = YouTube(youtube_url, 
-        'WEB_CREATOR', 
-        use_po_token=True)
+        yt = YouTube(youtube_url, 'WEB_CREATOR')
         print('yt.streams', yt.streams)
         video = yt.streams.get_highest_resolution()
         print('video', video)
